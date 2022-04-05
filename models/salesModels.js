@@ -31,6 +31,7 @@ const getSalesById = async (id) => {
       sales
     ON sale_id = id
     WHERE id = ?
+    ORDER BY id ASC;
   `;
 
   const [sale] = await connection.execute(saleById, [id]);
