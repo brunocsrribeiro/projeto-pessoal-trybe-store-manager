@@ -1,23 +1,23 @@
 const { connection } = require('./connection');
 
 const getAll = async () => {
-  const allProducts = 'SELECT * FROM products ORDER BY id';
+  const queryAllProducts = 'SELECT * FROM products ORDER BY id';
 
-  const [products] = await connection.execute(allProducts);
+  const [products] = await connection.execute(queryAllProducts);
 
   return products;
 };
 
 const getProductById = async (id) => {
-  const productById = 'SELECT * FROM products WHERE id = ?';
+  const queryProductById = 'SELECT * FROM products WHERE id = ?';
 
-  const [product] = await connection.execute(productById, [id]);
+  const [product] = await connection.execute(queryProductById, [id]);
 
   return product[0];
 };
 
 const createProduct = async (product) => {
-  const newProduct = `
+  const queryNewProduct = `
     INSERT INTO
       products (name, quantity)
     VALUES
@@ -25,7 +25,7 @@ const createProduct = async (product) => {
   `;
 
   const [{ insertId }] = await connection.execute(
-      newProduct,
+      queryNewProduct,
       [product.name, product.quantity],
   );
 
@@ -35,16 +35,43 @@ const createProduct = async (product) => {
   };
 };
 
+const updateProducts = async (product) => {
+  const queryUpdateProduct = `
+    UPDATE products
+    SET
+      name = ?,
+      quantity = ?
+    WHERE id = ?;
+  `;
+
+  await connection.execute(
+      queryUpdateProduct,
+      [product.name, product.quantity, product.id],
+  );
+
+  return product;
+};
+
 const findByName = async (name) => {
-  const allNames = `
+  const queryAllNames = `
     SELECT * FROM products
     WHERE name = ?;
   `;
 
-  const [existName] = await connection.execute(allNames, [name]);
-  console.log(existName);
+  const [existName] = await connection.execute(queryAllNames, [name]);
 
   return existName;
+};
+
+const findById = async (id) => {
+  const queryFindById = `
+    SELECT * FROM products
+    WHERE id = ?;
+  `;
+
+  const [existId] = await connection.execute(queryFindById, [id]);
+
+  return existId;
 };
 
 module.exports = {
@@ -52,4 +79,6 @@ module.exports = {
   getProductById,
   createProduct,
   findByName,
+  findById,
+  updateProducts,
 };

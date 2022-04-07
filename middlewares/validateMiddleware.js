@@ -1,4 +1,4 @@
-const { StatusCodes } = require('http-status-codes');
+const { StatusCodes, getReasonPhrase } = require('http-status-codes');
 const Joi = require('joi');
 require('./errorMiddleware');
 const productService = require('../services/productsServices');
@@ -41,8 +41,24 @@ const findByName = async (req, res, next) => {
   next();
 };
 
+const findById = async (req, res, next) => {
+  const { id } = req.params;
+
+  const existId = await productService.findById(id);
+
+  if (!existId.length) {
+    return res.status(StatusCodes.NOT_FOUND).json({
+      message: `Product ${getReasonPhrase(StatusCodes.NOT_FOUND)
+          .toLowerCase()}`,
+    });
+  }
+
+  next();
+};
+
 module.exports = {
   validateProducts,
   validateSales,
   findByName,
+  findById,
 };

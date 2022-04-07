@@ -20,9 +20,21 @@ const findByName = async (name) => {
   return nameExist;
 };
 
+const updateProducts = async (product) => {
+  const update = await ProductModel.updateProducts(product);
+  return update;
+};
+
+const findById = async (id) => {
+  const idExist = await ProductModel.findById(id);
+  return idExist;
+};
+
 module.exports = {
   getAll,
   getProductById,
   createProduct,
   findByName,
+  findById,
+  updateProducts,
 };
