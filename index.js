@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const routerProducts = require('./routes/products.routes');
 const routerSales = require('./routes/sales.routes');
-const error = require('./middlewares/errorMiddleware');
+const { error } = require('./middlewares/errorMiddleware');
 
 const app = express();
 
