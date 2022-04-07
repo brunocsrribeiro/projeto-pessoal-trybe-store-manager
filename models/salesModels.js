@@ -39,7 +39,34 @@ const getSalesById = async (id) => {
   return sale;
 };
 
+// const deleteSales = async (id) => {
+//   const queryDeleteSale = `
+//     DELETE FROM sales_products
+//     WHERE sale_id = ?;
+//   `;
+
+//   await connection.execute(
+//     queryDeleteSale,
+//       [id],
+//   );
+// };
+
+const findByIdSale = async (id) => {
+  const queryFindById = `
+    SELECT * FROM sales
+    JOIN sales_products
+    ON sale_id = id
+    WHERE id = ?;
+  `;
+
+  const [existId] = await connection.execute(queryFindById, [id]);
+
+  return existId;
+};
+
 module.exports = {
   getAll,
   getSalesById,
+  // deleteSales,
+  findByIdSale,
 };

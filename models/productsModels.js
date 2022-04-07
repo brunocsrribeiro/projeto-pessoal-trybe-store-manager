@@ -75,7 +75,7 @@ const findByName = async (name) => {
   return existName;
 };
 
-const findById = async (id) => {
+const findByIdProduct = async (id) => {
   const queryFindById = `
     SELECT * FROM products
     WHERE id = ?;
@@ -91,7 +91,7 @@ module.exports = {
   getProductById,
   createProduct,
   findByName,
-  findById,
+  findByIdProduct,
   updateProducts,
   deleteProducts,
 };

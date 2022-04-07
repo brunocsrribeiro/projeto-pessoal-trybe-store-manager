@@ -30,8 +30,8 @@ const deleteProducts = async (id) => {
   return deleteProduct;
 };
 
-const findById = async (id) => {
-  const idExist = await ProductModel.findById(id);
+const findByIdProduct = async (id) => {
+  const idExist = await ProductModel.findByIdProduct(id);
   return idExist;
 };
 
@@ -40,7 +40,7 @@ module.exports = {
   getProductById,
   createProduct,
   findByName,
-  findById,
+  findByIdProduct,
   updateProducts,
   deleteProducts,
 };
