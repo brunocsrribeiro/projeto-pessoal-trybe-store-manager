@@ -39,17 +39,17 @@ const getSalesById = async (id) => {
   return sale;
 };
 
-// const deleteSales = async (id) => {
-//   const queryDeleteSale = `
-//     DELETE FROM sales_products
-//     WHERE sale_id = ?;
-//   `;
+const deleteSales = async (id) => {
+  const queryDeleteSale = `
+    DELETE FROM sales_products
+    WHERE sale_id = ?;
+  `;
 
-//   await connection.execute(
-//     queryDeleteSale,
-//       [id],
-//   );
-// };
+  await connection.execute(
+    queryDeleteSale,
+      [id],
+  );
+};
 
 const findByIdSale = async (id) => {
   const queryFindById = `
@@ -67,6 +67,6 @@ const findByIdSale = async (id) => {
 module.exports = {
   getAll,
   getSalesById,
-  // deleteSales,
+  deleteSales,
   findByIdSale,
 };

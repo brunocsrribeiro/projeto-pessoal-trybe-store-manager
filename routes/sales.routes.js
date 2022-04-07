@@ -6,8 +6,8 @@ const salesRouters = express.Router();
 
 salesRouters
   .get('/', saleController.listAll)
-  .get('/:id', findByIdSale, saleController.getSalesById);
-  // .delete('/:id', findByIdSale, saleController.deleteSales);
+  .get('/:id', findByIdSale, saleController.getSalesById)
+  .delete('/:id', findByIdSale, saleController.deleteSales);
   // .post('/', saleController.createSales)
   // .put('/:id', saleController)
 

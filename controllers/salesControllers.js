@@ -23,20 +23,20 @@ const getSalesById = async (req, res, next) => {
   }
 };
 
-// const deleteSales = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
+const deleteSales = async (req, res, next) => {
+  try {
+    const { id } = req.params;
     
-//     await saleService.deleteSales(id);
+    await saleService.deleteSales(id);
 
-//     return res.status(StatusCodes.NO_CONTENT).end();
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    return res.status(StatusCodes.NO_CONTENT).end();
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   listAll,
   getSalesById,
-  // deleteSales,
+  deleteSales,
 };

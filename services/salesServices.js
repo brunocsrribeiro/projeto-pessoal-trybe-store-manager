@@ -10,10 +10,10 @@ const getSalesById = async (id) => {
   return saleById;
 };
 
-// const deleteSales = async (id) => {
-//   const deleteSale = await SaleModel.deleteSales(id);
-//   return deleteSale;
-// };
+const deleteSales = async (id) => {
+  const deleteSale = await SaleModel.deleteSales(id);
+  return deleteSale;
+};
 
 const findByIdSale = async (id) => {
   const idExist = await SaleModel.findByIdSale(id);
@@ -23,6 +23,6 @@ const findByIdSale = async (id) => {
 module.exports = {
   getAll,
   getSalesById,
-  // deleteSales,
+  deleteSales,
   findByIdSale,
 };
