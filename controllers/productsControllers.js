@@ -1,4 +1,4 @@
-const { StatusCodes, getReasonPhrase } = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 const productService = require('../services/productsServices');
 
 const listAll = async (_req, res, next) => {
@@ -16,14 +16,6 @@ const getProductById = async (req, res, next) => {
     const { id } = req.params;
 
     const product = await productService.getProductById(id);
-
-    if (!product) {
-      return res.status(StatusCodes.NOT_FOUND)
-        .json({
-          message: `Product ${getReasonPhrase(StatusCodes.NOT_FOUND)
-              .toLowerCase()}`,
-        });
-    }
 
     res.status(StatusCodes.OK).json(product);
   } catch (error) {
@@ -60,9 +52,22 @@ const updateProducts = async (req, res, next) => {
   }
 };
 
+const deleteProducts = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    
+    await productService.deleteProducts(id);
+
+    return res.status(StatusCodes.NO_CONTENT).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   listAll,
   getProductById,
   createProduct,
   updateProducts,
+  deleteProducts,
 };

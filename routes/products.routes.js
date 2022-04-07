@@ -6,10 +6,10 @@ const productsRouters = express.Router();
 
 productsRouters
   .get('/', productController.listAll)
-  .get('/:id', productController.getProductById)
+  .get('/:id', findById, productController.getProductById)
   .post('/', validateProducts, findByName, productController.createProduct)
-  .put('/:id', validateProducts, findById, productController.updateProducts);
-  // .delete('/:id', productController)
+  .put('/:id', findById, productController.updateProducts)
+  .delete('/:id', findById, productController.deleteProducts);
 
 module.exports = {
   productsRouters,

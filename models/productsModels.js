@@ -52,6 +52,18 @@ const updateProducts = async (product) => {
   return product;
 };
 
+const deleteProducts = async (id) => {
+  const queryDeleteProduct = `
+    DELETE FROM products
+    WHERE id = ?;
+  `;
+
+  await connection.execute(
+    queryDeleteProduct,
+      [id],
+  );
+};
+
 const findByName = async (name) => {
   const queryAllNames = `
     SELECT * FROM products
@@ -81,4 +93,5 @@ module.exports = {
   findByName,
   findById,
   updateProducts,
+  deleteProducts,
 };

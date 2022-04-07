@@ -32,9 +32,9 @@ const validateSales = (req, _res, next) => {
 const findByName = async (req, res, next) => {
   const { name } = req.body;
 
-  const existName = await productService.findByName(name);
+  const thisNameExists = await productService.findByName(name);
   
-  if (existName.length > 0) {
+  if (thisNameExists.length > 0) {
     return res.status(StatusCodes.CONFLICT).json({ message: 'Product already exists' });
   }
 
@@ -44,9 +44,9 @@ const findByName = async (req, res, next) => {
 const findById = async (req, res, next) => {
   const { id } = req.params;
 
-  const existId = await productService.findById(id);
+  const thisIdExists = await productService.findById(id);
 
-  if (!existId.length) {
+  if (!thisIdExists.length) {
     return res.status(StatusCodes.NOT_FOUND).json({
       message: `Product ${getReasonPhrase(StatusCodes.NOT_FOUND)
           .toLowerCase()}`,
