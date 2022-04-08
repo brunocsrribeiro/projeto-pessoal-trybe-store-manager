@@ -25,7 +25,6 @@ const getSalesById = async (req, res, next) => {
 
 const createdSales = async (req, res, next) => {
   try {
-    console.log(req.body);
     const sale = req.body;
 
     const createdSale = await saleService.createdSales(sale);
@@ -48,6 +47,22 @@ const createSales = async (req, res, next) => {
   }
 };
 
+const updateSales = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { productId, quantity } = req.body[0];
+    
+    const updatedSale = await saleService.updateSales(
+        id,
+        { productId, quantity },
+    );
+
+    return res.status(StatusCodes.OK).json(updatedSale);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteSales = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -65,5 +80,6 @@ module.exports = {
   getSalesById,
   createdSales,
   createSales,
+  updateSales,
   deleteSales,
 };
