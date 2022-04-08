@@ -39,6 +39,40 @@ const getSalesById = async (id) => {
   return sale;
 };
 
+const createSales = async (id, sale) => {
+  const queryNewSale = `
+    INSERT INTO
+      sales_products (sale_id, product_id, quantity)
+    VALUES
+      (?, ?, ?);
+  `;
+
+  await Promise.all(sale.map(async ({ productId, quantity }) => {
+    await connection.execute(
+      queryNewSale,
+        [id, productId, quantity],
+    );
+  }));
+
+  return {
+    id,
+    itemsSold: sale,
+  };
+};
+
+const createdSales = async (sale) => {
+  const queryIdNewSale = `
+    INSERT INTO sales
+    VALUES ()
+  `;
+
+  const [{ insertId }] = await connection.execute(queryIdNewSale);
+  
+  const createSalesFunc = await createSales(insertId, sale);
+
+  return createSalesFunc;
+};
+
 const deleteSales = async (id) => {
   const queryDeleteSale = `
     DELETE FROM sales_products
@@ -67,6 +101,8 @@ const findByIdSale = async (id) => {
 module.exports = {
   getAll,
   getSalesById,
+  createdSales,
+  createSales,
   deleteSales,
   findByIdSale,
 };

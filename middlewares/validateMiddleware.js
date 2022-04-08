@@ -9,7 +9,7 @@ const schemaProducts = Joi.object().keys({
   quantity: Joi.number().integer().min(1).required(),
 });
 
-const schemaSales = Joi.object({
+const schemaSales = Joi.object().keys({
   productId: Joi.number().integer().required(),
   quantity: Joi.number().integer().min(1).required(),
 });
@@ -23,9 +23,13 @@ const validateProducts = (req, _res, next) => {
 };
 
 const validateSales = (req, _res, next) => {
-  const { error } = schemaSales.validate(req.body);
+  const validation = req.body;
 
-  if (error) throw error;
+  validation.forEach((valid) => {
+    const { error } = schemaSales.validate(valid);
+  
+    if (error) throw error;
+  });
 
   next();
 };
