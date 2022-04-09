@@ -12,7 +12,7 @@ const getProductById = async (id) => {
   const queryProductById = 'SELECT * FROM products WHERE id = ?';
 
   const [product] = await connection.execute(queryProductById, [id]);
-
+  
   return product[0];
 };
 
@@ -71,7 +71,7 @@ const findByName = async (name) => {
   `;
 
   const [existName] = await connection.execute(queryAllNames, [name]);
-
+  
   return existName;
 };
 

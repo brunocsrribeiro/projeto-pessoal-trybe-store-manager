@@ -9,7 +9,7 @@ const {
 const productsRouters = express.Router();
 
 productsRouters
-  .get('/', productController.listAll)
+  .get('/', productController.getAll)
   .get('/:id', findByIdProduct, productController.getProductById)
   .post('/', validateProducts, findByName, productController.createProduct)
   .put('/:id', validateProducts, findByIdProduct, productController.updateProducts)

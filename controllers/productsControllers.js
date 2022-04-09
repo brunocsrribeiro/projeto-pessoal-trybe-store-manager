@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const productService = require('../services/productsServices');
 
-const listAll = async (_req, res, next) => {
+const getAll = async (_req, res, next) => {
   try {
     const products = await productService.getAll();
 
@@ -65,7 +65,7 @@ const deleteProducts = async (req, res, next) => {
 };
 
 module.exports = {
-  listAll,
+  getAll,
   getProductById,
   createProduct,
   updateProducts,

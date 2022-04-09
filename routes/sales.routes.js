@@ -5,7 +5,7 @@ const { validateSales, findByIdSale } = require('../middlewares/validateMiddlewa
 const salesRouters = express.Router();
 
 salesRouters
-  .get('/', saleController.listAll)
+  .get('/', saleController.getAll)
   .get('/:id', findByIdSale, saleController.getSalesById)
   .post('/', validateSales, saleController.createdSales)
   .put('/:id', validateSales, findByIdSale, saleController.updateSales)

@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const saleService = require('../services/salesServices');
 
-const listAll = async (_req, res, next) => {
+const getAll = async (_req, res, next) => {
   try {
     const sales = await saleService.getAll();
 
@@ -76,7 +76,7 @@ const deleteSales = async (req, res, next) => {
 };
 
 module.exports = {
-  listAll,
+  getAll,
   getSalesById,
   createdSales,
   createSales,
