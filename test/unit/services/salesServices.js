@@ -45,7 +45,7 @@ describe('Ao chamar a função getAll de salesModels', () => {
   });  
 });
 
-describe('Ao chamar a função update de salesModels', () => {
+describe('Ao chamar a função updateSales de salesModels', () => {
   before(() => {
     const sales = {
       saleId: 1,
@@ -67,6 +67,28 @@ describe('Ao chamar a função update de salesModels', () => {
   describe('quando é inserido com sucesso ', () => {
     it('é retornado um object', async () => {
       const sales = await salesService.updateSales({ name: "produto A", quantity: 10});
+
+      expect(sales).to.be.an('object');
+    });
+  });  
+});
+
+describe('Ao chamar a função findByIdSale de salesModels', () => {
+  before(() => {
+    const sales = {
+     id: 1
+    }
+
+    sinon.stub(salesModel, 'findByIdSale').resolves(sales);
+  })
+
+  after(() => {
+    salesModel.findByIdSale.restore();
+  });
+
+  describe('quando é inserido com sucesso ', () => {
+    it('é retornado um object', async () => {
+      const sales = await salesService.findByIdSale(1);
 
       expect(sales).to.be.an('object');
     });

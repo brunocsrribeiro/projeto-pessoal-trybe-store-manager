@@ -47,7 +47,7 @@ describe('Ao chamar a função getAll de salesModels', () => {
   });  
 });
 
-describe('Ao chamar a função update de productsModels', () => {
+describe('Ao chamar a função updateSales de salesModels', () => {
   before(() => {
     const sales = {
       saleId: 1,
@@ -74,6 +74,29 @@ describe('Ao chamar a função update de productsModels', () => {
     });
   });  
 });
+
+describe('Ao chamar a função findByIdSale de salesModels', () => {
+  const sales = {
+    id: 1
+  };
+
+  before(() => {
+    const execute = [{ insertI: 1 }]
+    sinon.stub(connection, 'execute').resolves(execute);
+  })
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('quando é inserido com sucesso ', () => {
+    it('é retornado um object', async () => {
+       const sales = await salesModel.findByIdSale(1 );
+       
+      expect(sales).to.be.an('object');
+    });
+  });  
+})
 
 describe('Ao chamar a função deleteSales de salesModel', () => {
   before(() => {

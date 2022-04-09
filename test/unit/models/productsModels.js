@@ -69,6 +69,37 @@ describe('Ao chamar a função update de productsModels', () => {
   });  
 });
 
+describe('Ao chamar a função createProduct de productsModels', () => {
+  const product = {
+    name: "Produto A",
+    quantity: 10
+  };
+
+  before(async () => {
+    const execute = [{ insertId: 1 }];
+
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('quando é inserido com sucesso ', () => {
+    it('é retornado um object', async () => {
+      const products = await productsModel.createProduct({ ...product });
+
+      expect(products).to.be.an('object');
+    });
+
+    it('o objeto possui o "id" do novo produto inserido', async () => {
+      const products = await productsModel.createProduct({ ...product });
+      console.log(products);
+      expect(products).to.have.a.property('id');
+    });
+  }); 
+});
+
 describe('Ao chamar a função deleteProducts de productsModels', () => {
   before(() => {
     sinon.stub(connection, 'execute').resolves();

@@ -114,7 +114,7 @@ const findByIdSale = async (id) => {
   `;
 
   const [existId] = await connection.execute(queryFindById, [id]);
-
+  
   return existId;
 };
 

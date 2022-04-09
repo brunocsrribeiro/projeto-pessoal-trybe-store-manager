@@ -83,6 +83,34 @@ describe('Ao chamar a função getSalesById de salesControllers', () => {
   });
 });
 
+describe('Ao chamar a função createSales de salesControllers', () => {
+  describe('quando o payload informado é válido', () => {
+      const response = {};
+      const request = {};
+
+      before(() => {
+        request.body = {
+          productId: 1,
+          quantity: 15,
+        };
+
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
+        sinon.stub(salesService, 'createSales').resolves(true);
+      });
+
+      after(() => {
+        salesService.createSales.restore();
+      });
+
+      it('é chamado o status com o código 201 - CREATED', async () => {
+        await salesController.createSales(request, response);
+
+        expect(response.status.calledWith(201)).to.be.equal(true);
+      });
+  });
+});
+
 describe('Ao chamar a função deleteSales de salesControllers', () => {
   const response = {};
   const request = {};
