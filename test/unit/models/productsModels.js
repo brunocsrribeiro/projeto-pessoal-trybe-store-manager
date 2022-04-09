@@ -8,14 +8,14 @@ describe('Ao chamar a função getAll de productsModels', () => {
   before(() => {
     const products = [
       {
-        "id": 1,
-        "name": "produto A",
-        "quantity": 10
+        id: 1,
+        name: "produto A",
+        quantity: 10
       },
       {
-        "id": 2,
-        "name": "produto B",
-        "quantity": 20
+        id: 2,
+        name: "produto B",
+        quantity: 20
       }
     ];
   
@@ -48,10 +48,10 @@ describe('Ao chamar a função getAll de productsModels', () => {
 describe('Ao chamar a função update de productsModels', () => {
   before(() => {
     const products = {
-        "id": 1,
-        "name": "produto A",
-        "quantity": 10
-      }
+      id: 1,
+      name: "produto A",
+      quantity: 10
+    }
 
     sinon.stub(connection, 'execute').resolves(products);
   })
@@ -63,7 +63,7 @@ describe('Ao chamar a função update de productsModels', () => {
   describe('quando é inserido com sucesso ', () => {
     it('é retornado um object', async () => {
       const products = await productsModel.updateProducts({ name: "produto A", quantity: 10});
-      console.log(`O que estou recebendo ${products}`);
+
       expect(products).to.be.an('object');
     });
   });  

@@ -8,16 +8,16 @@ describe('Ao chamar a função getAll de salesModels', () => {
   before(() => {
     const sales = [
       {
-        "saleId": 1,
-        "date": "2021-09-09T04:54:29.000Z",
-        "productId": 1,
-        "quantity": 2
+        saleId: 1,
+        date: "2021-09-09T04:54:29.000Z",
+        productId: 1,
+        quantity: 2
       },
       {
-        "saleId": 1,
-        "date": "2021-09-09T04:54:54.000Z",
-        "productId": 2,
-        "quantity": 2
+        saleId: 1,
+        date: "2021-09-09T04:54:54.000Z",
+        productId: 2,
+        quantity: 2
       }
     ];
 
@@ -50,11 +50,11 @@ describe('Ao chamar a função getAll de salesModels', () => {
 describe('Ao chamar a função update de productsModels', () => {
   before(() => {
     const sales = {
-      "saleId": 1,
-      "itemUpdated": [
+      saleId: 1,
+      itemUpdated: [
         {
-          "productId": 1,
-          "quantity": 10
+          productId: 1,
+          quantity: 10
         }
       ]
     }
